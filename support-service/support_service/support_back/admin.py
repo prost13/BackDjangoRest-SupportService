@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from support_back.models import Client, Assistant, Service, Order, Tag, Ordering, Message, Ticket, Review, Authoring
 
 admin.site.register(Client)
 admin.site.register(Assistant)

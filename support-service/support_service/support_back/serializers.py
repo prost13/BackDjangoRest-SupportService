@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from support_back.models import Client, Assistant, Service, Order, Tag, Ordering, Message, Ticket, Review, Authoring
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):

@@ -1,32 +1,60 @@
 from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
+# from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.views import APIView
 from rest_framework.routers import DefaultRouter
-# from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 # from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
 
 from support_back import views
 
 # urlpatterns = [
 #     path('auth/', include('djoser.urls')),
-#     # path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-#     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+#     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+#     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 #     # path('auth/', include('rest_framework_social_oauth2.urls')),
 #     path('auth/token/', obtain_auth_token, name='token'),
 #     # path('auth/logout', Logout.as_view()),
 
 router = DefaultRouter()
+
+urlpatterns = [
+    path('auth/', include('djoser.urls')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+
 router.register(r'assistants', views.AssistantModelViewSet, basename='assistant')
+router.register(r'assistants', views.CreateAssistantModelViewSet, basename='assistant')
+
 router.register(r'clients', views.ClientModelViewSet, basename='client')
+router.register(r'clients', views.CreateClientModelViewSet, basename='client')
+
 router.register(r'orders', views.OrderModelViewSet, basename='order')
+router.register(r'orders', views.CreateOrderModelViewSet, basename='order')
+
 router.register(r'services', views.ServiceModelViewSet, basename='service')
+router.register(r'services', views.CreateServiceModelViewSet, basename='service')
+
 router.register(r'tags', views.TagModelViewSet, basename='tag')
+router.register(r'tags', views.CreateTagModelViewSet, basename='tag')
+
 router.register(r'orderings', views.OrderingModelViewSet, basename='ordering')
+router.register(r'orderings', views.CreateOrderingModelViewSet, basename='ordering')
+
 router.register(r'messages', views.MessageModelViewSet, basename='message')
+router.register(r'messages', views.CreateMessageModelViewSet, basename='message')
+
 router.register(r'tickets', views.TicketModelViewSet, basename='ticket')
+router.register(r'tickets', views.CreateTicketModelViewSet, basename='ticket')
+
 router.register(r'reviews', views.ReviewModelViewSet, basename='review')
+
 router.register(r'authorings', views.AuthoringModelViewSet, basename='authoring')
+router.register(r'authorings', views.CreateAuthoringModelViewSet, basename='authoring')
 urlpatterns = router.urls
+
+
+
 
     # path('assistants/<int:pk>', AssistantRetrieveView.as_view()),
     # path('assistants/update/<int:pk>', AssistantUpdateView.as_view()),
